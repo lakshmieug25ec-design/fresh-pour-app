@@ -73,12 +73,27 @@ export function PreOrder() {
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    if (!finalQty) return toast.error("Please choose a quantity.");
-    if (!date || !time) return toast.error("Please pick a date and time.");
-    if (!name.trim()) return toast.error("Please enter your name.");
-    if (!/^\d{10}$/.test(mobile.trim())) return toast.error("Enter a valid 10-digit mobile number.");
-    if (mode === "Delivery" && !address.trim())
-      return toast.error("Please add a delivery address.");
+    if (!finalQty) {
+      toast.error("Please choose a quantity.");
+      return;
+    }
+    if (!date || !time) {
+      toast.error("Please pick a date and time.");
+      return;
+    }
+    if (!name.trim()) {
+      toast.error("Please enter your name.");
+      return;
+    }
+    if (!/^\d{10}$/.test(mobile.trim())) {
+      toast.error("Enter a valid 10-digit mobile number.");
+      return;
+    }
+    if (mode === "Delivery" && !address.trim()) {
+      toast.error("Please add a delivery address.");
+      return;
+    }
+
 
     toast.success("Opening WhatsApp with your order…");
     window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
